@@ -24,3 +24,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/contratistas', [ContratistasController::class, 'index']); //Retorna la lista
 Route::post('/contratistas/registrar', [ContratistasController::class, 'store']); //Buscamos el metodo store para insertar los datos
 Route::put('/contratistas/actualizar',  [ContratistasController::class, 'update']); //Actualizamos los datos
+Route::put('/contratistas/activar',  [ContratistasController::class, 'activar']); //Actualizamos los datos
+Route::put('/contratistas/desactivar',  [ContratistasController::class, 'desactivar']); //Actualizamos los datos

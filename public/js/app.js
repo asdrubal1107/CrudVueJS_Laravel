@@ -2156,6 +2156,30 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       }).then(function () {// always executed
       });
+    },
+    ActivarContratista: function ActivarContratista(Id) {
+      var me = this;
+      axios.put('/contratistas/activar', {
+        'id': Id
+      }).then(function (response) {
+        me.ListarContratistas();
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }).then(function () {// always executed
+      });
+    },
+    DesactivarContratista: function DesactivarContratista(Id) {
+      var me = this;
+      axios.put('/contratistas/desactivar', {
+        'id': Id
+      }).then(function (response) {
+        me.ListarContratistas();
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }).then(function () {// always executed
+      });
     }
   },
   mounted: function mounted() {
@@ -37996,9 +38020,43 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _vm._m(2, true),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-danger btn-sm",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            return _vm.DesactivarContratista(data.id)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "fas fa-trash" }),
+                        _vm._v(
+                          "\n                                Desactivar\n                            "
+                        )
+                      ]
+                    ),
                     _vm._v(" "),
-                    _vm._m(3, true)
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-info btn-sm",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            return _vm.ActivarContratista(data.id)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "fas fa-check" }),
+                        _vm._v(
+                          "\n                                Activar\n                            "
+                        )
+                      ]
+                    )
                   ])
                 ])
               }),
@@ -38233,7 +38291,7 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(4)
+                    _vm._m(2)
                   ]
                 )
               ]),
@@ -38257,41 +38315,45 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { type: "button" },
-                    on: {
-                      click: function($event) {
-                        return _vm.RegistrarContratista()
-                      }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                        Guardar\n                    "
+                _vm.tipoAccion == 1
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.RegistrarContratista()
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Guardar\n                    "
+                        )
+                      ]
                     )
-                  ]
-                ),
+                  : _vm._e(),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { type: "button" },
-                    on: {
-                      click: function($event) {
-                        return _vm.ActualizarContratista()
-                      }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                        Actualizar\n                    "
+                _vm.tipoAccion == 2
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.ActualizarContratista()
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Actualizar\n                    "
+                        )
+                      ]
                     )
-                  ]
-                )
+                  : _vm._e()
               ])
             ])
           ]
@@ -38370,36 +38432,6 @@ var staticRenderFns = [
         _c("th", { staticStyle: { width: "20%" } })
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "btn btn-danger btn-sm", attrs: { href: "#" } },
-      [
-        _c("i", { staticClass: "fas fa-trash" }),
-        _vm._v(
-          "\n                                Eliminar\n                            "
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "btn btn-info btn-sm", attrs: { href: "#" } },
-      [
-        _c("i", { staticClass: "fas fa-check" }),
-        _vm._v(
-          "\n                                Activar\n                            "
-        )
-      ]
-    )
   },
   function() {
     var _vm = this

@@ -86,11 +86,11 @@
                                     <i class="fas fa-pencil-alt"> </i>
                                     Editar
                                 </a>
-                                <a class="btn btn-danger btn-sm" href="#">
+                                <a class="btn btn-danger btn-sm" href="#" @click="DesactivarContratista(data.id)">
                                     <i class="fas fa-trash"> </i>
-                                    Eliminar
+                                    Desactivar
                                 </a>
-                                <a class="btn btn-info btn-sm" href="#">
+                                <a class="btn btn-info btn-sm" href="#" @click="ActivarContratista(data.id)">
                                     <i class="fas fa-check"> </i>
                                     Activar
                                 </a>
@@ -200,10 +200,10 @@
                         <button type="button" class="btn btn-secondary" @click="CerrarModal()">
                             Cerrar
                         </button>
-                        <button type="button" class="btn btn-primary" @click="RegistrarContratista()">
+                        <button type="button" v-if="tipoAccion == 1" class="btn btn-primary" @click="RegistrarContratista()">
                             Guardar
                         </button>
-                        <button type="button" class="btn btn-primary" @click="ActualizarContratista()">
+                        <button type="button" v-if="tipoAccion == 2" class="btn btn-primary" @click="ActualizarContratista()">
                             Actualizar
                         </button>
                     </div>
@@ -317,6 +317,7 @@ export default {
                 // always executed
             });
         },
+
         ActualizarContratista(){
             let me = this;
             axios.put('/contratistas/actualizar',{
@@ -328,6 +329,40 @@ export default {
             })
             .then(function (response) {
                 me.CerrarModal();
+                me.ListarContratistas();
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            });
+        },
+
+        ActivarContratista(Id){
+            let me = this;
+            axios.put('/contratistas/activar',{
+                'id' : Id,
+            })
+            .then(function (response) {
+                me.ListarContratistas();
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            });
+        },
+
+        DesactivarContratista(Id){
+            let me = this;
+            axios.put('/contratistas/desactivar',{
+                'id' : Id,
+            })
+            .then(function (response) {
                 me.ListarContratistas();
                 console.log(response);
             })

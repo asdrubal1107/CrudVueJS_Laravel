@@ -75,14 +75,19 @@ class ContratistasController extends Controller
         $Contratista->update(); //Guardar cambios
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function activar(Request $request)
     {
-        //
+        $Contratista = Contratistas::findOrFail($request->id); //Recibir parametro id del formulario
+        $Contratista->estado = 1;
+        $Contratista->update(); //Guardar cambios
     }
+
+    public function desactivar(Request $request)
+    {
+        $Contratista = Contratistas::findOrFail($request->id); //Recibir parametro id del formulario
+        $Contratista->estado = 0;
+        $Contratista->update(); //Guardar cambios
+    }
+
+    
 }
